@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/go-redis/redis/internal"
-	"github.com/go-redis/redis/internal/pool"
-	"github.com/go-redis/redis/internal/proto"
+	"github.com/arcoraven/redis/internal"
+	"github.com/arcoraven/redis/internal/pool"
+	"github.com/arcoraven/redis/internal/proto"
 )
 
 // Redis nil reply, .e.g. when key does not exist.

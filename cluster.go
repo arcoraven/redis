@@ -9,10 +9,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/go-redis/redis/internal"
-	"github.com/go-redis/redis/internal/hashtag"
-	"github.com/go-redis/redis/internal/pool"
-	"github.com/go-redis/redis/internal/proto"
+	"github.com/arcoraven/redis/internal"
+	"github.com/arcoraven/redis/internal/hashtag"
+	"github.com/arcoraven/redis/internal/pool"
+	"github.com/arcoraven/redis/internal/proto"
 )
 
 var errClusterNoNodes = internal.RedisError("redis: cluster has no nodes")
