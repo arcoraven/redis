@@ -1,7 +1,6 @@
 package redis
 
 import (
-	"errors"
 	"fmt"
 	"math/rand"
 	"net"
@@ -787,19 +786,17 @@ func (c *ClusterClient) lazyReloadState() {
 
 // Not thread-safe.
 func (c *ClusterClient) reloadState() (*clusterState, error) {
-	return nil, errors.New("stubbing go-redis reloadState() for Clustered Redis")
+	node, err := c.nodes.Random()
+	if err != nil {
+		return nil, err
+	}
 
-	// node, err := c.nodes.Random()
-	// if err != nil {
-	// 	return nil, err
-	// }
+	slots, err := node.Client.ClusterSlots().Result()
+	if err != nil {
+		return nil, err
+	}
 
-	// slots, err := node.Client.ClusterSlots().Result()
-	// if err != nil {
-	// 	return nil, err
-	// }
-
-	// return newClusterState(c.nodes, slots, node.Client.opt.Addr)
+	return newClusterState(c.nodes, slots, node.Client.opt.Addr)
 }
 
 // reaper closes idle connections to the cluster.
